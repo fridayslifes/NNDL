@@ -1,0 +1,3 @@
+Model,Implementation,Precision,Recall,F1 (Churn),PR-AUC,ROC-AUC
+Logistic Regression,scikit-learn,0.6568,0.5321,0.5879,0.6421,0.836
+Single-Layer Perceptron,Pure NumPy (from scratch),0.6667,0.5348,0.5935,0.64,0.8348

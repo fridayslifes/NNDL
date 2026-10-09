@@ -1,0 +1,6 @@
+Model,Implementation,Precision,Recall,F1 (Churn),PR-AUC,ROC-AUC
+Logistic Regression (τ=0.50),scikit-learn,0.6489,0.5535,0.5974,0.634,0.843
+Single-Layer Perceptron (τ=0.50),Pure NumPy (from scratch),0.648,0.5561,0.5986,0.6313,0.8407
+MLP + Weighted BCE (τ=0.50),PyTorch + Platt calibration,0.6512,0.5241,0.5807,0.6318,0.8415
+MLP + Weighted BCE (τ_F1=0.33),PyTorch + Platt calibration,0.5348,0.7193,0.6135,0.6318,0.8415
+"MLP + Weighted BCE (τ*=0.08, deployed)",PyTorch + Platt calibration,0.3718,0.9652,0.5368,0.6318,0.8415

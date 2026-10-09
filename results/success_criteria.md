@@ -1,0 +1,3 @@
+- ⚠️ **MLP matches or beats Logistic Regression on PR-AUC** — MLP 0.6318 vs LogReg 0.6340 (Δ = -0.0022; 95% CI [-0.0103, +0.0050]; the interval contains 0, so the two are statistically indistinguishable — they *match*).
+- ✅ **Churn-class F1 ≥ 0.60** — F1 = 0.6135 at the validation-chosen F1 threshold τ_F1 = 0.33; at the cost-optimal τ* = 0.08 F1 = 0.5368 (recall 0.965, precision 0.372). F1 weighs a false alarm and a missed churner equally, whereas the business cost ratio is 10 : 1, so the cost-optimal operating point accepts a lower F1.
+- ✅ **Cost-based threshold beats the naive 0.5 threshold** — ₹16,51,500 vs ₹31,21,500, saving ₹14,70,000 on 1,409 test customers (₹39,58,500 = 70.6% cheaper than doing nothing).

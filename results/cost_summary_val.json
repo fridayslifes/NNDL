@@ -1,0 +1,34 @@
+{
+  "optimal": {
+    "threshold": 0.08,
+    "tp": 359,
+    "fp": 616,
+    "tn": 419,
+    "fn": 15,
+    "n_customers": 1409,
+    "n_flagged": 975,
+    "total_cost": 1687500.0,
+    "do_nothing_cost": 5610000.0,
+    "target_everyone_cost": 2113500.0,
+    "savings_vs_do_nothing": 3922500.0,
+    "savings_vs_do_nothing_pct": 69.91978609625669,
+    "savings_vs_target_everyone": 426000.0,
+    "savings_vs_target_everyone_pct": 20.156139105748757
+  },
+  "naive_0.5": {
+    "threshold": 0.5,
+    "tp": 189,
+    "fp": 98,
+    "tn": 937,
+    "fn": 185,
+    "n_customers": 1409,
+    "n_flagged": 287,
+    "total_cost": 3205500.0,
+    "do_nothing_cost": 5610000.0,
+    "target_everyone_cost": 2113500.0,
+    "savings_vs_do_nothing": 2404500.0,
+    "savings_vs_do_nothing_pct": 42.86096256684492,
+    "savings_vs_target_everyone": -1092000.0,
+    "savings_vs_target_everyone_pct": -51.66784953867992
+  }
+}

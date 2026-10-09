@@ -1,0 +1,76 @@
+{
+  "architecture": {
+    "input_dim": 40,
+    "hidden_dims": [
+      64,
+      32
+    ],
+    "dropout": 0.3,
+    "batchnorm": true,
+    "hidden_activation": "ReLU",
+    "output_activation": "Sigmoid",
+    "trainable_parameters": 4929
+  },
+  "training": {
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 64,
+    "max_epochs": 150,
+    "patience": 10,
+    "seed": 42
+  },
+  "imbalance_strategy": {
+    "name": "weighted_bce",
+    "label": "2. Weighted BCE",
+    "selection_rule": "highest mean validation PR-AUC over seeds [42, 43, 44, 45, 46]; deployed model = seed 42",
+    "val_pr_auc_mean": 0.6380921027762998,
+    "val_pr_auc_std": 0.0024983620586615943,
+    "val_metrics_seed42": {
+      "precision": 0.49747899159663866,
+      "recall": 0.7914438502673797,
+      "f1": 0.6109391124871001,
+      "pr_auc": 0.6353471808792253,
+      "roc_auc": 0.8340295538505258
+    },
+    "details": {
+      "n_pos": 1121,
+      "n_neg": 3104,
+      "pos_weight": 2.768956289027654
+    }
+  },
+  "calibration": {
+    "method": "platt",
+    "a": 1.0121308374317788,
+    "b": -1.0878116255235162,
+    "fitted_on": "validation",
+    "brier_raw": 0.17507520649394792,
+    "brier_calibrated": 0.13895753891050414
+  },
+  "threshold": {
+    "optimal": 0.08,
+    "naive": 0.5,
+    "theoretical": 0.1,
+    "f1_optimal_val": 0.33,
+    "f1_at_f1_optimal_val": 0.6264501160092807,
+    "val_total_cost_at_optimal": 1687500.0
+  },
+  "costs": {
+    "c_offer": 1500.0,
+    "c_lost": 15000.0,
+    "currency": "\u20b9"
+  },
+  "risk_tiers": {
+    "high": 0.7,
+    "medium": 0.4
+  },
+  "test_metrics": {
+    "pr_auc": 0.6317811750727053,
+    "roc_auc": 0.8414503087137357,
+    "precision": 0.3717816683831102,
+    "recall": 0.9652406417112299,
+    "f1": 0.5368029739776952,
+    "logreg_pr_auc": 0.6339962776161118,
+    "n_test": 1409
+  }
+}
