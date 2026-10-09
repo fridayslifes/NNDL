@@ -214,7 +214,7 @@ Held-out **test set, evaluated once** (1,409 customers, notebook 07):
 | Prediction logging | `app/logger.py` → `logs/predictions.jsonl` + SQLite |
 | Fixed seeds, never-mixed train/val/test split, **test metrics reported once** | `src/config.py`, `load_splits(include_test=...)`, notebook 07 |
 | Git repo with README, requirements.txt, commits from both members | this file, `requirements.txt`, [§17](#17-git-workflow-distinct-commits-for-both-members) |
-| Public deployment **or** local demo with recorded video | Local run or Docker / Hugging Face Spaces ([docs/DEPLOY_HUGGINGFACE.md](docs/DEPLOY_HUGGINGFACE.md)), [§18](#18-report-video-demo--viva) checklist |
+| Public deployment **or** local demo with recorded video | Live on Render ([https://nndl-gqaf.onrender.com](https://nndl-gqaf.onrender.com)) · [docs/DEPLOY_RENDER.md](docs/DEPLOY_RENDER.md) |
 | Optimiser comparison (SGD vs RMSprop vs Adam) and activation choice (Unit 1 & 2) | notebook 04, `plots/optimizer_comparison.png`, `plots/activation_derivatives.png` |
 | SHAP explainability + `get_customer_top_drivers` | `src/explainability.py`, notebook 07 |
 
@@ -230,7 +230,7 @@ Held-out **test set, evaluated once** (1,409 customers, notebook 07):
         <strong>Praveen</strong>
       </a><br />
       <em>Application Lead</em><br /><br />
-      <sub>FastAPI Backend · Dashboard UI · Prediction Logging · Docker & Hugging Face Deployment · API Tests</sub>
+      <sub>FastAPI Backend · Dashboard UI · Prediction Logging · Cloud Deployment (Render) · API Tests</sub>
     </td>
     <td align="center" width="50%" valign="top">
       <a href="https://github.com/riya0jani">

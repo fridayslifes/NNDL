@@ -10,7 +10,7 @@
 
 | Member | Role | Files Owned & Committed |
 |---|---|---|
-| **Praveen** (`fridayslifes`) | **Application Lead** | `app/` (FastAPI backend `main.py`, `logger.py`, `templates/`, `static/`), `src/inference.py`, `tests/test_api.py`, `Dockerfile`, `.dockerignore`, `run_app.sh`, `run_app.bat`, `START_HERE.md`, `docs/DEPLOY_HUGGINGFACE.md`, `docs/hf_space_README.md`, `logs/.gitkeep`, initial project skeleton (`.gitignore`, `requirements.txt`, `README.md`). |
+| **Praveen** (`fridayslifes`) | **Application Lead** | `app/` (FastAPI backend `main.py`, `logger.py`, `templates/`, `static/`), `src/inference.py`, `tests/test_api.py`, `Dockerfile`, `.dockerignore`, `run_app.sh`, `run_app.bat`, `START_HERE.md`, `docs/DEPLOY_RENDER.md`, `render.yaml`, `logs/.gitkeep`, initial project skeleton (`.gitignore`, `requirements.txt`, `README.md`). |
 | **Riya** | **Model Lead** | `data/` (`Telco-Customer-Churn.csv`, `sample_demo.csv`, `processed/`), `notebooks/01_eda.ipynb` to `06_cost_threshold.ipynb`, `src/config.py`, `src/data_preprocessing.py`, `src/plotting.py`, `src/numpy_perceptron.py`, `src/metrics.py`, `src/model.py`, `src/training.py`, `src/focal_loss.py`, `src/calibration.py`, `src/cost_optimizer.py`, `models/`, `plots/`, `results/`, `tests/` (model tests). |
 | **Shared / Joint** | **Both** | `notebooks/07_final_evaluation.ipynb`, `src/explainability.py`, `report/` (`report.md`, `viva_guide.md`). |
 

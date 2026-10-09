@@ -1,12 +1,12 @@
-# Container for public deployment (Hugging Face Spaces "Docker" SDK, Render, Railway...).
-# Step-by-step guide: docs/DEPLOY_HUGGINGFACE.md
+# Container for public cloud deployment (Render, Railway, Docker...).
+# Step-by-step guide: docs/DEPLOY_RENDER.md
 #
 # Build & run locally:
 #   docker build -t churn-dashboard .
 #   docker run -p 7860:7860 churn-dashboard      -> http://localhost:7860
 FROM python:3.12-slim
 
-# Hugging Face Spaces run the container as a non-root user with UID 1000, so the
+# Cloud hosts run containers securely as a non-root user with UID 1000, so the
 # app (and its logs/ folder) must be owned by that user or logging would fail.
 RUN useradd --create-home --uid 1000 user
 ENV HOME=/home/user \
