@@ -34,5 +34,9 @@ After the first `run_app` (so `.venv/` exists):
 | `report/report.md` | Report draft (rewrite in your own words, export to PDF) |
 | `report/viva_guide.md` | ~40 viva questions with answers |
 | `docs/GITHUB_COLLABORATION_GUIDE.md` | How each member commits their own part on GitHub |
-| `docs/GITLAB_COMMIT_GUIDE.md` | Alternative commit guide for GitLab |
-| `docs/DEPLOY_HUGGINGFACE.md` | Docker deployment to Hugging Face Spaces |
+| `docs/DEPLOY_RENDER.md` | Free cloud deployment guide on Render |
+| `docs/README_DESIGN_PLAYBOOK.md` | Universal UI/README aesthetic component kit |
+| `docs/assignment_brief.docx` | Original course project specification and rubric |
+
+## Live Cloud Deployment
+The app is running live on Render: **https://nndl-gqaf.onrender.com**

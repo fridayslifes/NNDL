@@ -13,6 +13,10 @@
 </p>
 
 <p align="center">
+  <a href="https://nndl-gqaf.onrender.com"><strong>🚀 Click Here to Open Live Dashboard on Render</strong></a>
+</p>
+
+<p align="center">
   <a href="#quickstart">⚡ Quickstart</a> •
   <a href="#key-features">✨ Key Features</a> •
   <a href="#system-architecture">🏗️ Architecture</a> •
@@ -23,11 +27,11 @@
 </p>
 
 <p align="center">
+  <a href="https://nndl-gqaf.onrender.com"><img src="https://img.shields.io/badge/Render-Live%20App%20Online-46E3B7?style=flat-square&logo=render&logoColor=black" alt="Live Demo" /></a>
   <img src="https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python" />
   <img src="https://img.shields.io/badge/PyTorch-2.x-EE4C2C?style=flat-square&logo=pytorch&logoColor=white" alt="PyTorch" />
   <img src="https://img.shields.io/badge/FastAPI-1.0-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI" />
   <img src="https://img.shields.io/badge/Tests-49%20Passed-10B981?style=flat-square&logo=pytest&logoColor=white" alt="Tests" />
-  <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker" />
   <img src="https://img.shields.io/badge/Contributors-Praveen%20%26%20Riya-6366F1?style=flat-square" alt="Contributors" />
   <img src="https://img.shields.io/badge/License-Academic-64748B?style=flat-square" alt="License" />
 </p>
@@ -302,13 +306,14 @@ telco-churn-dashboard/
 │   └── viva_guide.md                   # ~40 viva questions with answers
 ├── docs/
 │   ├── GITHUB_COLLABORATION_GUIDE.md   # step-by-step GitHub collaboration for both members
-│   ├── GITLAB_COMMIT_GUIDE.md          # alternative commit guide for GitLab
-│   ├── DEPLOY_HUGGINGFACE.md           # Docker deployment to Hugging Face Spaces
-│   └── hf_space_README.md              # Space README with the required YAML header
+│   ├── DEPLOY_RENDER.md                # free cloud deployment guide for Render
+│   ├── README_DESIGN_PLAYBOOK.md       # universal design playbook & component kit
+│   └── assignment_brief.docx           # course project assignment brief & rubric
 ├── tests/                              # 49 pytest tests
+├── render.yaml                         # Render infrastructure-as-code deployment config
 ├── START_HERE.md                       # 1-minute quick start
 ├── run_app.sh · run_app.bat            # one-click launchers (create .venv, install, start the app)
-├── Dockerfile                          # container for Hugging Face Spaces / Render
+├── Dockerfile                          # container for Docker / Render deployments
 ├── requirements.txt
 └── README.md
 ```
@@ -602,11 +607,13 @@ python -m pytest -q
 
 **Option A — run locally (simplest for the recorded demo):** `uvicorn app.main:app --host 0.0.0.0 --port 8000` and open http://localhost:8000.
 
-**Option B — Docker (Hugging Face Spaces "Docker" SDK, Render, Railway)** — full step-by-step guide: [docs/DEPLOY_HUGGINGFACE.md](docs/DEPLOY_HUGGINGFACE.md).
+**Option B — Live Cloud Deployment on Render (Active):**  
+The application is deployed live at: **[https://nndl-gqaf.onrender.com](https://nndl-gqaf.onrender.com)**  
+Full setup and configuration guide: [docs/DEPLOY_RENDER.md](docs/DEPLOY_RENDER.md).
+
+**Option C — Docker (Local & Containers):**
 ```bash
 docker build -t churn-dashboard .
-```
-```bash
 docker run -p 7860:7860 churn-dashboard
 ```
 The image uses CPU-only PyTorch and contains `src/`, `app/`, `models/` and the demo CSV; it listens on `$PORT` (default 7860).
@@ -617,22 +624,13 @@ The image uses CPU-only PyTorch and contains `src/`, `app/`, `models/` and the d
 
 The course requires commit history from **both** members in their lead roles, so **each person commits their own work from their own GitHub account** (do not share tokens or commit on someone else's behalf).
 
-1. One member creates an empty GitHub repository and adds the other as a collaborator.
-2. Riya (Model Lead) commits, e.g.:
-```bash
-git add src/config.py src/data_preprocessing.py notebooks/01_eda.ipynb notebooks/02_preprocessing.ipynb data/ && git commit -m "Data pipeline: cleaning, leakage-free preprocessing, EDA"
-```
-   then `numpy_perceptron.py` + notebook 03, `model.py` / `training.py` / `focal_loss.py` + notebooks 04–05, `calibration.py` / `cost_optimizer.py` + notebook 06, `models/`, `plots/`, `results/`.
-3. Praveen (Application Lead) commits, e.g.:
-```bash
-git add app/ src/inference.py Dockerfile .dockerignore tests/test_api.py && git commit -m "FastAPI app, dashboard UI and prediction logging"
-```
-4. Shared (either or both, ideally in separate commits): notebook 07, `src/explainability.py`, `report/`, `README.md`, remaining tests.
-5. `models/*.pth` and `models/*.pkl` are committed on purpose so a fresh clone runs the web app immediately (they are small: ~230 KB in total).
+1. Praveen created the GitHub repository ([`fridayslifes/NNDL`](https://github.com/fridayslifes/NNDL)) and added Riya as a collaborator.
+2. Praveen (Application Lead) committed the application architecture, FastAPI backend, dashboard UI, and deployment configs.
+3. Riya (Model Lead) committed the data pipeline, baselines, PyTorch MLP, imbalance ablation, calibration, and trained weights.
+4. Shared deliverables: notebook 07, `src/explainability.py`, `report/`, `README.md`.
+5. `models/*.pth` and `models/*.pkl` are committed so a fresh clone runs the web app immediately.
 
-Before committing, each member should read and re-run their part — you must be able to explain every line in the viva. `gitlens` in VS Code shows authorship per line.
-
-A complete walkthrough for **GitHub** is in [docs/GITHUB_COLLABORATION_GUIDE.md](docs/GITHUB_COLLABORATION_GUIDE.md); the GitLab alternative is in [docs/GITLAB_COMMIT_GUIDE.md](docs/GITLAB_COMMIT_GUIDE.md). Both cover credentials, step-by-step commit commands per person, contributor verification, and checklists.
+A complete walkthrough for **GitHub** is in [docs/GITHUB_COLLABORATION_GUIDE.md](docs/GITHUB_COLLABORATION_GUIDE.md). It covers credentials, step-by-step commit commands per person, contributor verification, and checklists.
 
 **Before recording the demo, clear test predictions** with the dashboard's **Clear log** button (*Prediction log* tab).
 
