@@ -1,17 +1,141 @@
+<p align="center">
+  <img src="app/static/img/favicon.svg" width="80" height="80" alt="Telecom Churn Logo" />
+</p>
+
+<h1 align="center">Telecom Churn Early-Warning Dashboard</h1>
+
+<p align="center">
+  <strong>Cost-Optimal Deep Learning Early-Warning System with Explainable AI & Production FastAPI Service</strong>
+</p>
+
+<p align="center">
+  <em>MDS471 Neural Networks & Deep Learning — Project P5</em>
+</p>
+
+<p align="center">
+  <a href="#quickstart">⚡ Quickstart</a> •
+  <a href="#key-features">✨ Key Features</a> •
+  <a href="#system-architecture">🏗️ Architecture</a> •
+  <a href="#1-results-at-a-glance">📊 Results</a> •
+  <a href="#3-team-roles">👥 Team</a> •
+  <a href="#18-report-video-demo--viva">🎓 Viva Guide</a> •
+  <a href="docs/README_DESIGN_PLAYBOOK.md">🎨 Design Playbook</a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/PyTorch-2.x-EE4C2C?style=flat-square&logo=pytorch&logoColor=white" alt="PyTorch" />
+  <img src="https://img.shields.io/badge/FastAPI-1.0-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/Tests-49%20Passed-10B981?style=flat-square&logo=pytest&logoColor=white" alt="Tests" />
+  <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker" />
+  <img src="https://img.shields.io/badge/Contributors-Praveen%20%26%20Riya-6366F1?style=flat-square" alt="Contributors" />
+  <img src="https://img.shields.io/badge/License-Academic-64748B?style=flat-square" alt="License" />
+</p>
+
+<br />
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="25%"><strong>Churners Caught</strong><br /><h2>96.5 %</h2><sub>361 of 374 churners</sub></td>
+      <td align="center" width="25%"><strong>Cost Reduction</strong><br /><h2>70.6 %</h2><sub>vs inaction policy</sub></td>
+      <td align="center" width="25%"><strong>Net Savings</strong><br /><h2>₹14.7 Lakhs</h2><sub>vs naive threshold</sub></td>
+      <td align="center" width="25%"><strong>Peak F1 Score</strong><br /><h2>0.613</h2><sub>minority class</sub></td>
+    </tr>
+  </table>
+</div>
+
+<br />
+
 ---
-output:
-  word_document: default
-  html_document: default
-  pdf_document: default
+
+## <a id="key-features"></a>✨ Key Features & Technical Highlights
+
+<table width="100%">
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🧠 Deep Learning & From-Scratch Baselines</h3>
+      <p>Custom PyTorch MLP with BatchNorm, Dropout, L2 decay and early stopping, alongside a pure NumPy single-layer perceptron with analytical backpropagation and gradient check.</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>⚖️ Cost-Sensitive Decision Theory (10:1 Ratio)</h3>
+      <p>Instead of arbitrary 0.5 cutoffs, policy optimizes the real business asymmetry: ₹1,500 retention offer vs ₹15,000 lost customer, driving total test-set cost down from ₹56.1L to ₹16.5L.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🔍 Transparent Explainable AI (SHAP)</h3>
+      <p>Local and global feature attribution reveals exact drivers behind individual churn scores (contract length, fiber optics, tenure) with talking points for retention agents.</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>⚡ Production-Grade FastAPI & Interactive UI</h3>
+      <p>Sub-second batch scoring for up to 50k customers with real-time SVG probability distributions, interactive cost slider, customer inspection drawer, and CSV target export.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🛡️ Zero-Leakage Data Pipeline</h3>
+      <p>Strict 60/20/20 train/val/test partitioning; all scalers, one-hot encoders, and Platt calibration parameters are fitted strictly on training data with frozen random seeds.</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>📜 Dual-Sink Prediction Logging</h3>
+      <p>Enterprise auditability with append-only JSON Lines and SQLite mirrors recording timestamps, customer IDs, scores, thresholds, and model signatures for drift monitoring.</p>
+    </td>
+  </tr>
+</table>
+
 ---
-# Telecom Churn Early-Warning Dashboard
 
-**MDS471 Neural Networks & Deep Learning — Project P5: Telecom churn early-warning dashboard**
-**Team:** Riya (Model Lead) · Praveen (Application Lead)
+## <a id="system-architecture"></a>🏗️ System Architecture & Workflow
 
-A multi-layer perceptron that **ranks telecom customers by churn risk**, handles the 26.5 % class imbalance, calibrates its probabilities, and chooses the decision threshold that **minimises business cost** (₹1,500 per retention offer vs ₹15,000 per lost customer) instead of maximising accuracy. It is served behind our own **FastAPI** endpoint with an interactive dashboard that explains every score with **SHAP** and **logs every prediction**.
+```mermaid
+flowchart TD
+    subgraph DataPipeline["1. Leakage-Free Pipeline"]
+        A[Raw Kaggle Telco CSV] --> B[Data Cleaning & Missing Imputation]
+        B --> C[60/20/20 Train/Val/Test Split]
+        C --> D[StandardScaler & OneHotEncoder fit on Train only]
+    end
 
-![Business cost vs decision threshold](plots/cost_vs_threshold.png)
+    subgraph Modeling["2. Model & Imbalance Ablation"]
+        D --> E[NumPy Baseline Perceptron]
+        D --> F[PyTorch MLP Classifier]
+        F --> G{Imbalance Experiments}
+        G -->|Plain BCE / Weighted BCE / Oversampling / Focal Loss| H[Winning Model: Weighted BCE]
+        H --> I[Platt Scaling Probability Calibration]
+    end
+
+    subgraph DecisionTheory["3. Economic Optimization"]
+        I --> J[Cost Function: C_offer ₹1,500 vs C_lost ₹15,000]
+        J --> K[Optimal Cost Threshold τ* = 0.08]
+    end
+
+    subgraph Serving["4. Serving & Web Application"]
+        K --> L[FastAPI Backend Service]
+        L --> M[SHAP Explainer Engine]
+        L --> N[Dual Logger: JSONL + SQLite]
+        L --> O[Interactive Bootstrap Dashboard UI]
+    end
+```
+
+<p align="center">
+  <img src="plots/cost_vs_threshold.png" width="90%" alt="Business cost vs decision threshold" />
+</p>
+
+---
+
+## <a id="quickstart"></a>⚡ Quickstart: Run in One Command
+
+> [!TIP]
+> Everything is pre-trained and verified! You do not need to re-run the notebooks to start the dashboard immediately.
+
+```bash
+# macOS / Linux
+./run_app.sh
+
+# Windows
+run_app.bat
+```
+The script automatically configures `.venv/`, installs dependencies, validates trained model artifacts, and launches the dashboard at **`http://localhost:8000`**.
 
 ---
 
@@ -28,7 +152,7 @@ A multi-layer perceptron that **ranks telecom customers by churn risk**, handles
 10. [Prediction logging](#10-prediction-logging)
 11. [Source modules (`src/`)](#11-source-modules-src)
 12. [Artefacts, plots and results files](#12-artefacts-plots-and-results-files)
-13. [Configuration you can change](#13-configuration-you-can-change)
+13. [Configuration you can change](#13-configuration-you-change)
 14. [Reproducibility & leakage controls](#14-reproducibility--leakage-controls)
 15. [Tests](#15-tests)
 16. [Deployment](#16-deployment)
@@ -92,13 +216,34 @@ Held-out **test set, evaluated once** (1,409 customers, notebook 07):
 
 ---
 
-## 3. Team roles
+## 3. Team roles & Contributors
 
-| Member | Role | Owns |
-|---|---|---|
-| **Riya** | Model Lead | Data pipeline, preprocessing, baselines, MLP, imbalance ablation, calibration & cost threshold (notebooks 01–06, `src/` except `inference.py`) |
-| **Praveen** | Application Lead | Inference API, dashboard UI, prediction logging, deployment, API tests (`app/`, `src/inference.py`, `Dockerfile`, `tests/test_api.py`) |
-| Both | — | Final evaluation & SHAP (notebook 07), report, README, viva — **each must be able to explain every line of the training and application code** |
+<table align="center" width="100%">
+  <tr>
+    <td align="center" width="50%" valign="top">
+      <a href="https://github.com/fridayslifes">
+        <img src="https://github.com/fridayslifes.png" width="90" style="border-radius: 50%;" /><br /><br />
+        <strong>Praveen</strong>
+      </a><br />
+      <em>Application Lead</em><br /><br />
+      <sub>FastAPI Backend · Dashboard UI · Prediction Logging · Docker & Hugging Face Deployment · API Tests</sub>
+    </td>
+    <td align="center" width="50%" valign="top">
+      <a href="https://github.com/riya0jani">
+        <img src="https://github.com/riya0jani.png" width="90" style="border-radius: 50%;" /><br /><br />
+        <strong>Riya</strong>
+      </a><br />
+      <em>Model Lead</em><br /><br />
+      <sub>Data Pipeline · Leakage Controls · NumPy Perceptron · PyTorch MLP · Imbalance Ablation · Platt Calibration</sub>
+    </td>
+  </tr>
+</table>
+
+| Member | Role | GitHub | Owns |
+|---|---|---|---|
+| **Praveen** | Application Lead | [@fridayslifes](https://github.com/fridayslifes) | Inference API, dashboard UI, prediction logging, deployment, API tests (`app/`, `src/inference.py`, `Dockerfile`, `tests/test_api.py`) |
+| **Riya** | Model Lead | [@riya0jani](https://github.com/riya0jani) | Data pipeline, preprocessing, baselines, MLP, imbalance ablation, calibration & cost threshold (notebooks 01–06, `src/` except `inference.py`) |
+| Both | Joint Deliverables | — | Final evaluation & SHAP (notebook 07), report, README, viva — **each member can explain every line of the training and application code** |
 
 ---
 
